@@ -28,23 +28,21 @@ security:
                 login_path: security_login
                 # Securisation des formulaires
                 csrf_token_generator: security.csrf.token_manager
-                # La page par defaut apres une connexion reussie
-                default_target_path: admin
+                # # La page par defaut apres une connexion reussie
+                # default_target_path: admin
  
             logout:
                 # La route où se trouve le process de deconnexion
                 path: security_logout
                 # La route sur laquelle doit etre rediriger l'utilisateur apres une deconnexion
-                target: index
+                target: post_index
  
     access_control:
         # Les regles de securité
-        # Là dans ce cas seul les utilisateurs ayant le rôle ROLE_ADMIN
-        # peuvent acceder à toutes les pages commençant par /admin
         - { path: '^/user', roles: ROLE_ADMIN }
         - { path: '^/user/new', roles: ROLE_ADMIN, methods: [POST, GET] }
-        - { path: '^/user/{0-9}+/edit', roles: ROLE_ADMIN, methods: [POST, GET]}
-        - { path: '^/user/{0-9}+', roles: ROLE_ADMIN, methods: [DELETE]}
+        - { path: '^/user/[0-9]+/edit', roles: ROLE_ADMIN, methods: [POST, GET]}
+        - { path: '^/user/[0-9]+', roles: ROLE_ADMIN, methods: [DELETE]}
         - { path: '^/post/new', roles: ROLE_ADMIN, methods: [POST, GET] }
-        - { path: '^/post/{0-9}+/edit', roles: ROLE_ADMIN, methods: [POST, GET]}
-        - { path: '^/post/{0-9}+', roles: ROLE_ADMIN, methods: [DELETE]}
+        - { path: '^/post/[0-9]+/edit', roles: ROLE_ADMIN, methods: [POST, GET]}
+        - { path: '^/post/[0-9]+', roles: ROLE_ADMIN, methods: [DELETE]}
